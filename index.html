@@ -4,465 +4,462 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#05070b" />
-  <meta name="description" content="AI Radio – thousands of free worldwide internet radio stations" />
-  <title>AI Radio</title>
+  <meta name="description" content="Alien Radio – free worldwide radio + free audiobooks" />
+  <title>Alien Radio</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Alien Radio" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #05070b;
-      --panel: #0b0f17;
-      --card: #121722;
-      --elevated: #1a2130;
-      --accent: #7cfc00;
-      --accent-dim: #5cb800;
-      --cyan: #00ffcc;
-      --purple: #b388ff;
-      --text: #eef0f4;
-      --muted: #8b939e;
-      --border: #1e2533;
-      --danger: #ff5252;
+      --bg: #05070b; --panel: #0b0f17; --card: #121722; --elevated: #1a2130;
+      --accent: #7cfc00; --accent-dim: #5cb800; --cyan: #00ffcc; --purple: #b388ff;
+      --text: #eef0f4; --muted: #8b939e; --border: #1e2533; --danger: #ff5252;
       --glow: rgba(124, 252, 0, 0.4);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html, body { height: 100%; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      padding: 10px;
+      background: var(--bg); color: var(--text);
+      min-height: 100vh; display: flex; justify-content: center; padding: 10px;
       background-image:
         radial-gradient(ellipse 80% 50% at 15% -10%, rgba(124,252,0,0.09), transparent),
         radial-gradient(ellipse 60% 40% at 90% 110%, rgba(179,136,255,0.07), transparent);
     }
     .app {
-      width: 100%;
-      max-width: 540px;
-      background: var(--panel);
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.03);
-      display: flex;
-      flex-direction: column;
-      max-height: calc(100vh - 20px);
-      overflow: hidden;
+      width: 100%; max-width: 540px; background: var(--panel);
+      border-radius: 24px; border: 1px solid var(--border);
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.85);
+      display: flex; flex-direction: column; max-height: calc(100vh - 20px); overflow: hidden;
     }
-
-    /* ===== HEADER ===== */
     .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 16px 12px;
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
       background: linear-gradient(180deg, rgba(124,252,0,0.04), transparent);
     }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .alien {
-      width: 50px; height: 50px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #1f3a22, #0a140c);
+    .brand { display: flex; align-items: center; gap: 11px; }
+    .alien-logo {
+      width: 48px; height: 48px; border-radius: 50%;
       border: 2px solid var(--accent);
-      box-shadow: 0 0 22px var(--glow), inset 0 0 14px rgba(124,252,0,0.12);
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-      animation: alienPulse 3.5s ease-in-out infinite;
+      box-shadow: 0 0 18px var(--glow);
+      object-fit: cover; background: #000;
+      animation: pulse 3.5s ease-in-out infinite;
     }
-    @keyframes alienPulse {
-      0%, 100% { box-shadow: 0 0 18px var(--glow), inset 0 0 12px rgba(124,252,0,0.1); }
-      50% { box-shadow: 0 0 28px rgba(124,252,0,0.55), inset 0 0 16px rgba(124,252,0,0.18); }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 14px var(--glow); }
+      50% { box-shadow: 0 0 26px rgba(124,252,0,0.55); }
     }
-    .alien svg { width: 36px; height: 36px; }
     .brand h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 18px; font-weight: 700; letter-spacing: 1.2px;
+      font-family: 'Orbitron', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 1px;
       background: linear-gradient(100deg, var(--accent), var(--cyan));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .brand p { font-size: 11px; color: var(--muted); margin-top: 1px; letter-spacing: 0.3px; }
-    .header-actions { display: flex; align-items: center; gap: 8px; }
-    .icon-btn {
-      width: 38px; height: 38px; border-radius: 12px;
-      background: var(--card); border: 1px solid var(--border);
-      color: var(--muted); font-size: 16px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.15s;
-    }
-    .icon-btn:hover, .icon-btn.active {
-      border-color: var(--accent); color: var(--accent);
-      background: rgba(124,252,0,0.08);
-    }
+    .brand p { font-size: 10px; color: var(--muted); margin-top: 1px; }
     .live-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent); box-shadow: 0 0 8px var(--accent);
-      display: none; animation: blink 1.4s infinite;
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 8px var(--accent); display: none; animation: blink 1.4s infinite;
     }
     .live-dot.on { display: block; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-    /* ===== SEARCH ===== */
-    .search-wrap { padding: 12px 14px 6px; flex-shrink: 0; }
+    .main-tabs {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      border-bottom: 1px solid var(--border); flex-shrink: 0;
+    }
+    .main-tab {
+      background: transparent; border: none; color: var(--muted);
+      font-size: 13px; font-weight: 600; padding: 11px; cursor: pointer;
+      font-family: inherit; position: relative; transition: color 0.15s;
+    }
+    .main-tab.active { color: var(--accent); }
+    .main-tab.active::after {
+      content: ''; position: absolute; bottom: 0; left: 25%; right: 25%;
+      height: 2px; background: var(--accent); border-radius: 2px 2px 0 0;
+    }
+
+    .panel { display: none; flex: 1; flex-direction: column; min-height: 0; overflow: hidden; }
+    .panel.active { display: flex; }
+
+    .search-wrap { padding: 10px 12px 6px; flex-shrink: 0; }
     .search-bar {
-      display: flex; gap: 8px; align-items: center;
+      display: flex; gap: 0; align-items: center;
       background: var(--card); border: 1px solid var(--border);
-      border-radius: 14px; padding: 4px 4px 4px 14px;
-      transition: border-color 0.15s, box-shadow 0.15s;
+      border-radius: 12px; padding: 3px 3px 3px 12px;
     }
-    .search-bar:focus-within {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(124,252,0,0.12);
-    }
+    .search-bar:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124,252,0,0.1); }
     .search-bar input {
       flex: 1; background: transparent; border: none; outline: none;
-      color: var(--text); font-size: 14px; font-family: inherit; padding: 10px 0;
+      color: var(--text); font-size: 13px; font-family: inherit; padding: 9px 0;
     }
     .search-bar input::placeholder { color: var(--muted); }
     .search-bar button {
       background: linear-gradient(135deg, var(--accent), var(--accent-dim));
-      border: none; border-radius: 11px; padding: 10px 16px;
-      color: #081000; font-weight: 700; font-size: 13px; cursor: pointer;
-      font-family: inherit;
+      border: none; border-radius: 10px; padding: 9px 14px;
+      color: #081000; font-weight: 700; font-size: 12px; cursor: pointer; font-family: inherit;
     }
 
-    /* ===== TABS (Browse / Favs / Recent) ===== */
-    .tabs {
-      display: flex; gap: 4px; padding: 8px 14px 4px; flex-shrink: 0;
+    .sub-tabs {
+      display: flex; gap: 4px; padding: 6px 12px 4px; flex-shrink: 0;
     }
-    .tab {
-      flex: 1; text-align: center; padding: 9px 6px;
-      font-size: 12px; font-weight: 600; color: var(--muted);
-      background: transparent; border: none; border-radius: 10px;
-      cursor: pointer; font-family: inherit; transition: all 0.15s;
+    .sub-tab {
+      flex: 1; text-align: center; padding: 7px 4px; font-size: 11px; font-weight: 600;
+      color: var(--muted); background: transparent; border: none; border-radius: 8px;
+      cursor: pointer; font-family: inherit;
     }
-    .tab:hover { color: var(--text); }
-    .tab.active {
-      background: rgba(124,252,0,0.1); color: var(--accent);
-    }
+    .sub-tab.active { background: rgba(124,252,0,0.1); color: var(--accent); }
 
-    /* ===== FILTERS ===== */
     .filters {
-      display: flex; gap: 6px; padding: 8px 14px 10px;
-      overflow-x: auto; flex-shrink: 0;
-      scrollbar-width: none; -ms-overflow-style: none;
+      display: flex; gap: 5px; padding: 6px 12px 8px; overflow-x: auto; flex-shrink: 0;
+      scrollbar-width: none;
     }
     .filters::-webkit-scrollbar { display: none; }
     .chip {
-      flex-shrink: 0; padding: 7px 13px; border-radius: 20px;
+      flex-shrink: 0; padding: 6px 11px; border-radius: 16px;
       background: var(--card); border: 1px solid var(--border);
-      color: var(--muted); font-size: 11.5px; font-weight: 600;
-      cursor: pointer; font-family: inherit; transition: all 0.12s; white-space: nowrap;
+      color: var(--muted); font-size: 11px; font-weight: 600;
+      cursor: pointer; font-family: inherit; white-space: nowrap;
     }
-    .chip:hover { border-color: var(--accent); color: var(--accent); }
-    .chip.active {
-      background: rgba(124,252,0,0.14); border-color: var(--accent);
-      color: var(--accent); box-shadow: 0 0 12px rgba(124,252,0,0.15);
+    .chip.active, .chip:hover {
+      background: rgba(124,252,0,0.12); border-color: var(--accent); color: var(--accent);
     }
 
-    /* ===== META + ACTIONS ===== */
     .list-header {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 0 16px 8px; font-size: 11px; color: var(--muted); flex-shrink: 0;
+      padding: 0 14px 6px; font-size: 11px; color: var(--muted); flex-shrink: 0;
     }
     .surprise-btn {
-      background: transparent; border: 1px solid var(--border);
-      color: var(--cyan); font-size: 11px; font-weight: 600;
-      padding: 5px 10px; border-radius: 8px; cursor: pointer; font-family: inherit;
+      background: transparent; border: 1px solid var(--border); color: var(--cyan);
+      font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 7px;
+      cursor: pointer; font-family: inherit;
     }
-    .surprise-btn:hover { border-color: var(--cyan); background: rgba(0,255,204,0.08); }
 
-    /* ===== STATION LIST ===== */
     .list-wrap {
-      flex: 1; overflow-y: auto; min-height: 0;
-      margin: 0 10px; border-radius: 14px;
-      border: 1px solid var(--border); background: var(--card);
+      flex: 1; overflow-y: auto; min-height: 0; margin: 0 10px;
+      border-radius: 12px; border: 1px solid var(--border); background: var(--card);
       scrollbar-width: thin; scrollbar-color: #2a3344 transparent;
     }
-    .station {
-      display: flex; align-items: center; gap: 12px;
-      padding: 11px 12px; cursor: pointer;
-      border-bottom: 1px solid rgba(30,37,51,0.8);
-      transition: background 0.1s; position: relative;
+    .item {
+      display: flex; align-items: center; gap: 11px; padding: 10px 11px;
+      cursor: pointer; border-bottom: 1px solid rgba(30,37,51,0.7);
     }
-    .station:last-child { border-bottom: none; }
-    .station:hover { background: rgba(124,252,0,0.05); }
-    .station.playing {
-      background: rgba(124,252,0,0.09);
-      border-left: 3px solid var(--accent);
+    .item:last-child { border-bottom: none; }
+    .item:hover { background: rgba(124,252,0,0.05); }
+    .item.playing { background: rgba(124,252,0,0.09); border-left: 3px solid var(--accent); }
+    .item-icon {
+      width: 40px; height: 40px; border-radius: 9px; background: var(--elevated);
+      object-fit: cover; flex-shrink: 0;
     }
-    .fav-icon {
-      width: 42px; height: 42px; border-radius: 11px;
-      background: var(--elevated); object-fit: cover; flex-shrink: 0;
-    }
-    .fav-icon.ph {
+    .item-icon.ph {
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px; color: var(--muted);
+      font-size: 18px; color: var(--muted);
     }
-    .st-info { flex: 1; min-width: 0; }
-    .st-name {
-      font-size: 13.5px; font-weight: 600;
+    .item-info { flex: 1; min-width: 0; }
+    .item-name {
+      font-size: 13px; font-weight: 600;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .st-meta {
-      font-size: 11px; color: var(--muted); margin-top: 2px;
+    .item-meta {
+      font-size: 10.5px; color: var(--muted); margin-top: 2px;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .st-actions { display: flex; align-items: center; gap: 4px; }
+    .item-actions { display: flex; align-items: center; gap: 2px; }
     .heart {
-      width: 32px; height: 32px; border: none; background: transparent;
-      color: var(--muted); font-size: 16px; cursor: pointer; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; border: none; background: transparent;
+      color: var(--muted); font-size: 15px; cursor: pointer; border-radius: 7px;
     }
-    .heart:hover, .heart.on { color: #ff6b9d; }
-    .heart.on { text-shadow: 0 0 8px rgba(255,107,157,0.5); }
-    .play-ico {
-      width: 28px; text-align: center; font-size: 15px; color: var(--accent);
-      opacity: 0; transition: opacity 0.12s;
-    }
-    .station:hover .play-ico, .station.playing .play-ico { opacity: 1; }
+    .heart.on { color: #ff6b9d; }
+    .play-ico { width: 24px; text-align: center; font-size: 14px; color: var(--accent); opacity: 0; }
+    .item:hover .play-ico, .item.playing .play-ico { opacity: 1; }
 
     .empty, .loading, .err {
-      text-align: center; padding: 50px 24px; color: var(--muted); font-size: 13px; line-height: 1.5;
+      text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px; line-height: 1.5;
     }
     .err { color: var(--danger); }
-    .empty .big { font-size: 36px; margin-bottom: 10px; }
+    .empty .big { font-size: 32px; margin-bottom: 8px; }
 
     .load-more {
-      display: none; margin: 10px auto; padding: 9px 18px;
+      display: none; margin: 8px auto; padding: 8px 16px;
       background: var(--card); border: 1px solid var(--border);
       color: var(--accent); font-size: 12px; font-weight: 600;
-      border-radius: 10px; cursor: pointer; font-family: inherit;
+      border-radius: 9px; cursor: pointer; font-family: inherit;
     }
     .load-more.show { display: block; }
-    .load-more:hover { background: rgba(124,252,0,0.08); }
 
-    /* ===== VISUALIZER + NOW PLAYING ===== */
+    /* Player bar (radio) */
     .player-bar {
-      flex-shrink: 0;
+      flex-shrink: 0; border-top: 1px solid var(--border);
+      padding: 8px 12px 12px; display: none;
       background: linear-gradient(180deg, transparent, rgba(124,252,0,0.03));
-      border-top: 1px solid var(--border);
-      padding: 10px 14px 14px;
-      display: none;
     }
     .player-bar.show { display: block; }
-
     .viz-wrap {
-      height: 36px; margin-bottom: 10px;
-      border-radius: 8px; overflow: hidden;
+      height: 32px; margin-bottom: 8px; border-radius: 7px; overflow: hidden;
       background: #070a10; border: 1px solid #151a24;
     }
     #viz { width: 100%; height: 100%; display: block; }
-
-    .np {
-      display: flex; align-items: center; gap: 12px;
+    .np { display: flex; align-items: center; gap: 10px; }
+    .np-logo {
+      width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--accent);
+      object-fit: cover; box-shadow: 0 0 12px var(--glow); flex-shrink: 0; background: #000;
     }
-    .np-alien {
-      width: 46px; height: 46px; border-radius: 50%;
-      background: #0c160e; border: 2px solid var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 16px var(--glow); flex-shrink: 0;
-    }
-    .np-alien svg { width: 30px; height: 30px; }
     .np-text { flex: 1; min-width: 0; }
-    .np-label {
-      font-size: 9px; font-weight: 700; color: var(--accent);
-      letter-spacing: 1.2px; text-transform: uppercase;
-    }
-    .np-title {
-      font-size: 14px; font-weight: 600;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px;
-    }
-    .np-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
-    .np-btns { display: flex; gap: 6px; align-items: center; }
+    .np-label { font-size: 9px; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+    .np-title { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
+    .np-sub { font-size: 10px; color: var(--muted); margin-top: 1px; }
+    .np-btns { display: flex; gap: 5px; align-items: center; }
     .np-btn {
-      width: 38px; height: 38px; border-radius: 50%;
-      border: 1px solid var(--border); background: var(--card);
-      color: var(--text); font-size: 15px; cursor: pointer;
+      width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border);
+      background: var(--card); color: var(--text); font-size: 13px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      transition: all 0.12s;
     }
-    .np-btn:hover { border-color: var(--accent); color: var(--accent); }
     .np-btn.main {
-      width: 46px; height: 46px;
+      width: 42px; height: 42px;
       background: linear-gradient(135deg, var(--accent), var(--accent-dim));
-      border: none; color: #081000; font-size: 18px;
-      box-shadow: 0 0 18px var(--glow);
+      border: none; color: #081000; font-size: 16px; box-shadow: 0 0 14px var(--glow);
     }
     .np-btn.heart-btn.on { color: #ff6b9d; border-color: #ff6b9d; }
-
-    .controls-row {
-      display: flex; align-items: center; gap: 10px; margin-top: 10px;
-    }
-    .vol-group { display: flex; align-items: center; gap: 8px; flex: 1; }
-    .vol-group button {
-      background: none; border: none; color: var(--muted); font-size: 15px; cursor: pointer; padding: 4px;
-    }
-    .vol-group button:hover { color: var(--accent); }
+    .controls-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+    .vol-group { display: flex; align-items: center; gap: 6px; flex: 1; }
+    .vol-group button { background: none; border: none; color: var(--muted); font-size: 14px; cursor: pointer; }
     .vol-group input[type=range] {
-      flex: 1; -webkit-appearance: none; height: 4px;
-      border-radius: 2px; background: #1a2130; outline: none;
+      flex: 1; -webkit-appearance: none; height: 4px; border-radius: 2px; background: #1a2130; outline: none;
     }
     .vol-group input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none; width: 14px; height: 14px;
-      border-radius: 50%; background: var(--accent); cursor: pointer;
-      box-shadow: 0 0 8px var(--glow);
+      -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%;
+      background: var(--accent); cursor: pointer; box-shadow: 0 0 6px var(--glow);
     }
     .timer-btn {
-      font-size: 11px; font-weight: 600; color: var(--muted);
+      font-size: 10px; font-weight: 600; color: var(--muted);
       background: var(--card); border: 1px solid var(--border);
-      padding: 6px 10px; border-radius: 8px; cursor: pointer; font-family: inherit;
+      padding: 5px 8px; border-radius: 7px; cursor: pointer; font-family: inherit;
     }
     .timer-btn.active { color: var(--purple); border-color: var(--purple); }
 
+    /* Book reader panel */
+    .book-reader {
+      display: none; flex-direction: column; flex: 1; min-height: 0; overflow: hidden;
+      padding: 12px;
+    }
+    .book-reader.show { display: flex; }
+    .book-back {
+      background: none; border: none; color: var(--accent); font-size: 12px;
+      font-weight: 600; cursor: pointer; font-family: inherit; margin-bottom: 8px; text-align: left;
+    }
+    .book-title-big {
+      font-size: 16px; font-weight: 700; margin-bottom: 4px; line-height: 1.3;
+    }
+    .book-author { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .book-summary {
+      font-size: 12px; color: var(--muted); line-height: 1.45; margin-bottom: 12px;
+      max-height: 80px; overflow-y: auto;
+    }
+    .read-controls {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;
+    }
+    .read-btn {
+      flex: 1; min-width: 90px; padding: 11px 12px; border-radius: 11px;
+      border: 1px solid var(--border); background: var(--card);
+      color: var(--text); font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit;
+    }
+    .read-btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+      border: none; color: #081000;
+    }
+    .read-btn:disabled { opacity: 0.4; cursor: default; }
+    .voice-row {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 11px; color: var(--muted);
+    }
+    .voice-row select {
+      flex: 1; background: var(--card); border: 1px solid var(--border);
+      color: var(--text); border-radius: 8px; padding: 7px; font-size: 11px; font-family: inherit;
+    }
+    .text-progress {
+      font-size: 11px; color: var(--muted); margin-bottom: 6px;
+    }
+    .text-preview {
+      flex: 1; overflow-y: auto; background: var(--card); border: 1px solid var(--border);
+      border-radius: 11px; padding: 12px; font-size: 13px; line-height: 1.55;
+      white-space: pre-wrap; min-height: 100px;
+    }
+    .text-preview .highlight {
+      background: rgba(124,252,0,0.25); border-radius: 3px;
+    }
+
     .footer {
-      text-align: center; font-size: 10px; color: var(--muted);
-      padding: 8px 14px 12px; flex-shrink: 0;
+      text-align: center; font-size: 9px; color: var(--muted);
+      padding: 6px 12px 10px; flex-shrink: 0;
     }
     .footer a { color: var(--accent); text-decoration: none; }
 
-    /* Toast */
     .toast {
-      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(60px);
       background: var(--elevated); border: 1px solid var(--border);
-      color: var(--text); font-size: 13px; padding: 10px 18px;
-      border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      opacity: 0; transition: all 0.3s; z-index: 100; pointer-events: none;
+      color: var(--text); font-size: 12px; padding: 9px 16px; border-radius: 10px;
+      opacity: 0; transition: all 0.25s; z-index: 100; pointer-events: none;
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
   <div class="app">
-    <!-- HEADER -->
     <div class="header">
       <div class="brand">
-        <div class="alien">
-          <svg viewBox="0 0 64 64" fill="none">
-            <ellipse cx="32" cy="35" rx="25" ry="27" fill="#152a18" stroke="#7cfc00" stroke-width="2.2"/>
-            <ellipse cx="20" cy="31" rx="8.5" ry="11.5" fill="#081008" stroke="#7cfc00" stroke-width="1.4"/>
-            <ellipse cx="44" cy="31" rx="8.5" ry="11.5" fill="#081008" stroke="#7cfc00" stroke-width="1.4"/>
-            <ellipse cx="20" cy="33" rx="3.8" ry="5.2" fill="#7cfc00"/>
-            <ellipse cx="44" cy="33" rx="3.8" ry="5.2" fill="#7cfc00"/>
-            <circle cx="21.2" cy="30.5" r="1.6" fill="#e8ffe0"/>
-            <circle cx="45.2" cy="30.5" r="1.6" fill="#e8ffe0"/>
-            <path d="M25 47 Q32 53 39 47" stroke="#7cfc00" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <line x1="17" y1="11" x2="12" y2="3" stroke="#7cfc00" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="12" cy="3" r="2.4" fill="#7cfc00"/>
-            <line x1="47" y1="11" x2="52" y2="3" stroke="#7cfc00" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="52" cy="3" r="2.4" fill="#7cfc00"/>
-          </svg>
-        </div>
+        <img class="alien-logo" src="alien-logo.png" alt="Alien Radio" />
         <div>
-          <h1>AI RADIO</h1>
-          <p>Worldwide free streams</p>
+          <h1>ALIEN RADIO</h1>
+          <p>Radio · Free Books</p>
         </div>
       </div>
-      <div class="header-actions">
-        <div class="live-dot" id="liveDot"></div>
-        <button class="icon-btn" id="themeBtn" title="Toggle glow">✦</button>
+      <div class="live-dot" id="liveDot"></div>
+    </div>
+
+    <div class="main-tabs">
+      <button class="main-tab active" data-panel="radio">📡 Radio</button>
+      <button class="main-tab" data-panel="books">📚 Books</button>
+    </div>
+
+    <!-- RADIO PANEL -->
+    <div class="panel active" id="panel-radio">
+      <div class="search-wrap">
+        <div class="search-bar">
+          <input type="text" id="radioQ" placeholder="Search stations, genres, cities…" />
+          <button id="radioSearch">Search</button>
+        </div>
+      </div>
+      <div class="sub-tabs">
+        <button class="sub-tab active" data-view="browse">Browse</button>
+        <button class="sub-tab" data-view="favs">♥ Favorites</button>
+        <button class="sub-tab" data-view="recent">Recent</button>
+      </div>
+      <div class="filters" id="radioFilters">
+        <button class="chip active" data-t="top">🔥 Popular</button>
+        <button class="chip" data-t="clicks">📈 Trending</button>
+        <button class="chip" data-t="tag" data-v="rock">Rock</button>
+        <button class="chip" data-t="tag" data-v="pop">Pop</button>
+        <button class="chip" data-t="tag" data-v="jazz">Jazz</button>
+        <button class="chip" data-t="tag" data-v="electronic">Electronic</button>
+        <button class="chip" data-t="tag" data-v="classical">Classical</button>
+        <button class="chip" data-t="tag" data-v="news">News</button>
+        <button class="chip" data-t="tag" data-v="hip hop">Hip-Hop</button>
+        <button class="chip" data-t="tag" data-v="metal">Metal</button>
+        <button class="chip" data-t="tag" data-v="country">Country</button>
+        <button class="chip" data-t="tag" data-v="reggae">Reggae</button>
+        <button class="chip" data-t="tag" data-v="latin">Latin</button>
+        <button class="chip" data-t="tag" data-v="ambient">Ambient</button>
+        <button class="chip" data-t="tag" data-v="blues">Blues</button>
+        <button class="chip" data-t="tag" data-v="soul">Soul</button>
+        <button class="chip" data-t="tag" data-v="folk">Folk</button>
+        <button class="chip" data-t="tag" data-v="dance">Dance</button>
+        <button class="chip" data-t="country" data-v="United States">USA</button>
+        <button class="chip" data-t="country" data-v="United Kingdom">UK</button>
+        <button class="chip" data-t="country" data-v="Germany">Germany</button>
+        <button class="chip" data-t="country" data-v="France">France</button>
+        <button class="chip" data-t="country" data-v="Japan">Japan</button>
+        <button class="chip" data-t="country" data-v="Brazil">Brazil</button>
+        <button class="chip" data-t="country" data-v="Canada">Canada</button>
+        <button class="chip" data-t="country" data-v="Australia">Australia</button>
+        <button class="chip" data-t="country" data-v="India">India</button>
+        <button class="chip" data-t="country" data-v="Spain">Spain</button>
+        <button class="chip" data-t="country" data-v="Netherlands">Netherlands</button>
+        <button class="chip" data-t="country" data-v="Italy">Italy</button>
+        <button class="chip" data-t="country" data-v="Mexico">Mexico</button>
+        <button class="chip" data-t="language" data-v="english">English</button>
+        <button class="chip" data-t="language" data-v="spanish">Spanish</button>
+        <button class="chip" data-t="language" data-v="french">French</button>
+        <button class="chip" data-t="language" data-v="german">German</button>
+      </div>
+      <div class="list-header">
+        <span id="radioCount">Loading…</span>
+        <button class="surprise-btn" id="surprise">🎲 Surprise</button>
+      </div>
+      <div class="list-wrap" id="radioList"><div class="loading">Contacting stations…</div></div>
+      <button class="load-more" id="radioMore">Load more stations</button>
+
+      <div class="player-bar" id="playerBar">
+        <div class="viz-wrap"><canvas id="viz"></canvas></div>
+        <div class="np">
+          <img class="np-logo" src="alien-logo.png" alt="" />
+          <div class="np-text">
+            <div class="np-label">Now transmitting</div>
+            <div class="np-title" id="npTitle">—</div>
+            <div class="np-sub" id="npSub">—</div>
+          </div>
+          <div class="np-btns">
+            <button class="np-btn heart-btn" id="npHeart">♡</button>
+            <button class="np-btn" id="npStop">⏹</button>
+            <button class="np-btn main" id="npToggle">▶</button>
+          </div>
+        </div>
+        <div class="controls-row">
+          <div class="vol-group">
+            <button id="muteBtn">🔊</button>
+            <input type="range" id="vol" min="0" max="100" value="85" />
+          </div>
+          <button class="timer-btn" id="timerBtn">⏱ Sleep</button>
+        </div>
       </div>
     </div>
 
-    <!-- SEARCH -->
-    <div class="search-wrap">
-      <div class="search-bar">
-        <input type="text" id="q" placeholder="Search stations, genres, cities…" autocomplete="off" />
-        <button id="searchBtn">Search</button>
+    <!-- BOOKS PANEL -->
+    <div class="panel" id="panel-books">
+      <div id="booksBrowse">
+        <div class="search-wrap">
+          <div class="search-bar">
+            <input type="text" id="bookQ" placeholder="Search free books (Pride, Sherlock…)" />
+            <button id="bookSearch">Search</button>
+          </div>
+        </div>
+        <div class="filters" id="bookFilters">
+          <button class="chip active" data-b="popular">🔥 Popular</button>
+          <button class="chip" data-b="fiction">Fiction</button>
+          <button class="chip" data-b="science">Science</button>
+          <button class="chip" data-b="history">History</button>
+          <button class="chip" data-b="philosophy">Philosophy</button>
+          <button class="chip" data-b="poetry">Poetry</button>
+          <button class="chip" data-b="children">Children</button>
+          <button class="chip" data-b="adventure">Adventure</button>
+        </div>
+        <div class="list-header"><span id="bookCount">Free public domain books</span></div>
+        <div class="list-wrap" id="bookList"><div class="loading">Loading free books…</div></div>
+        <button class="load-more" id="bookMore">Load more books</button>
       </div>
-    </div>
 
-    <!-- TABS -->
-    <div class="tabs">
-      <button class="tab active" data-view="browse">Browse</button>
-      <button class="tab" data-view="favs">♥ Favorites</button>
-      <button class="tab" data-view="recent">Recent</button>
-    </div>
-
-    <!-- FILTER CHIPS (browse only) -->
-    <div class="filters" id="filters">
-      <button class="chip active" data-t="top">🔥 Popular</button>
-      <button class="chip" data-t="clicks">📈 Trending</button>
-      <button class="chip" data-t="tag" data-v="rock">Rock</button>
-      <button class="chip" data-t="tag" data-v="pop">Pop</button>
-      <button class="chip" data-t="tag" data-v="jazz">Jazz</button>
-      <button class="chip" data-t="tag" data-v="electronic">Electronic</button>
-      <button class="chip" data-t="tag" data-v="classical">Classical</button>
-      <button class="chip" data-t="tag" data-v="news">News</button>
-      <button class="chip" data-t="tag" data-v="hip hop">Hip-Hop</button>
-      <button class="chip" data-t="tag" data-v="metal">Metal</button>
-      <button class="chip" data-t="tag" data-v="country">Country</button>
-      <button class="chip" data-t="tag" data-v="reggae">Reggae</button>
-      <button class="chip" data-t="tag" data-v="latin">Latin</button>
-      <button class="chip" data-t="tag" data-v="ambient">Ambient</button>
-      <button class="chip" data-t="country" data-v="United States">USA</button>
-      <button class="chip" data-t="country" data-v="United Kingdom">UK</button>
-      <button class="chip" data-t="country" data-v="Germany">Germany</button>
-      <button class="chip" data-t="country" data-v="France">France</button>
-      <button class="chip" data-t="country" data-v="Japan">Japan</button>
-      <button class="chip" data-t="country" data-v="Brazil">Brazil</button>
-      <button class="chip" data-t="country" data-v="Canada">Canada</button>
-      <button class="chip" data-t="country" data-v="Australia">Australia</button>
-      <button class="chip" data-t="country" data-v="India">India</button>
-      <button class="chip" data-t="country" data-v="Spain">Spain</button>
-      <button class="chip" data-t="country" data-v="Netherlands">Netherlands</button>
-      <button class="chip" data-t="language" data-v="english">English</button>
-      <button class="chip" data-t="language" data-v="spanish">Spanish</button>
-      <button class="chip" data-t="language" data-v="french">French</button>
-      <button class="chip" data-t="language" data-v="german">German</button>
-    </div>
-
-    <div class="list-header">
-      <span id="count">Loading…</span>
-      <button class="surprise-btn" id="surprise">🎲 Surprise me</button>
-    </div>
-
-    <div class="list-wrap" id="list">
-      <div class="loading">Contacting alien radio network…</div>
-    </div>
-    <button class="load-more" id="more">Load more stations</button>
-
-    <!-- PLAYER -->
-    <div class="player-bar" id="playerBar">
-      <div class="viz-wrap"><canvas id="viz"></canvas></div>
-      <div class="np">
-        <div class="np-alien">
-          <svg viewBox="0 0 64 64" fill="none">
-            <ellipse cx="32" cy="35" rx="25" ry="27" fill="#152a18" stroke="#7cfc00" stroke-width="2.2"/>
-            <ellipse cx="20" cy="31" rx="8.5" ry="11.5" fill="#081008" stroke="#7cfc00" stroke-width="1.4"/>
-            <ellipse cx="44" cy="31" rx="8.5" ry="11.5" fill="#081008" stroke="#7cfc00" stroke-width="1.4"/>
-            <ellipse cx="20" cy="33" rx="3.8" ry="5.2" fill="#7cfc00"/>
-            <ellipse cx="44" cy="33" rx="3.8" ry="5.2" fill="#7cfc00"/>
-            <circle cx="21.2" cy="30.5" r="1.6" fill="#e8ffe0"/>
-            <circle cx="45.2" cy="30.5" r="1.6" fill="#e8ffe0"/>
-            <path d="M25 47 Q32 53 39 47" stroke="#7cfc00" stroke-width="2" fill="none" stroke-linecap="round"/>
-          </svg>
+      <div class="book-reader" id="bookReader">
+        <button class="book-back" id="bookBack">← Back to books</button>
+        <div class="book-title-big" id="bookTitle">—</div>
+        <div class="book-author" id="bookAuthor">—</div>
+        <div class="book-summary" id="bookSummary"></div>
+        <div class="voice-row">
+          <span>Voice</span>
+          <select id="voiceSelect"></select>
+          <span>Speed</span>
+          <select id="rateSelect">
+            <option value="0.8">0.8×</option>
+            <option value="1" selected>1×</option>
+            <option value="1.2">1.2×</option>
+            <option value="1.5">1.5×</option>
+          </select>
         </div>
-        <div class="np-text">
-          <div class="np-label">Now transmitting</div>
-          <div class="np-title" id="npTitle">—</div>
-          <div class="np-sub" id="npSub">—</div>
+        <div class="read-controls">
+          <button class="read-btn primary" id="readStart">▶ Read to me</button>
+          <button class="read-btn" id="readPause" disabled>⏸ Pause</button>
+          <button class="read-btn" id="readStop" disabled>⏹ Stop</button>
         </div>
-        <div class="np-btns">
-          <button class="np-btn heart-btn" id="npHeart" title="Favorite">♡</button>
-          <button class="np-btn" id="npStop" title="Stop">⏹</button>
-          <button class="np-btn main" id="npToggle" title="Play/Pause">▶</button>
-        </div>
-      </div>
-      <div class="controls-row">
-        <div class="vol-group">
-          <button id="muteBtn" title="Mute">🔊</button>
-          <input type="range" id="vol" min="0" max="100" value="85" />
-        </div>
-        <button class="timer-btn" id="timerBtn" title="Sleep timer">⏱ Sleep</button>
+        <div class="text-progress" id="textProgress">Select a book to load text</div>
+        <div class="text-preview" id="textPreview">Book text will appear here when loaded.</div>
       </div>
     </div>
 
     <div class="footer">
-      AI Radio · <a href="https://www.radio-browser.info/" target="_blank" rel="noopener">Radio Browser</a> · Free worldwide streams
+      Alien Radio · Radio Browser + Project Gutenberg · Free streams & public domain books
     </div>
   </div>
 
@@ -470,173 +467,102 @@
   <audio id="audio" preload="none" crossorigin="anonymous"></audio>
 
   <script>
-    const API = [
-      'https://de1.api.radio-browser.info',
-      'https://nl1.api.radio-browser.info',
-      'https://at1.api.radio-browser.info',
-      'https://fr1.api.radio-browser.info'
-    ];
+    // ========== SHARED ==========
+    const API_RADIO = ['https://de1.api.radio-browser.info','https://nl1.api.radio-browser.info','https://at1.api.radio-browser.info','https://fr1.api.radio-browser.info'];
     const LIMIT = 48;
-    const LS_FAVS = 'airadio_favs_v1';
-    const LS_RECENT = 'airadio_recent_v1';
+    const LS_FAVS = 'alienradio_favs_v2';
+    const LS_RECENT = 'alienradio_recent_v2';
 
-    let stations = [];
-    let current = null;
-    let playing = false;
-    let muted = false;
-    let offset = 0;
-    let query = { t: 'top' };
-    let view = 'browse'; // browse | favs | recent
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+    function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+
+    // ========== RADIO ==========
+    let stations = [], current = null, playing = false, muted = false, offset = 0;
+    let query = { t: 'top' }, view = 'browse';
     let favs = JSON.parse(localStorage.getItem(LS_FAVS) || '[]');
     let recent = JSON.parse(localStorage.getItem(LS_RECENT) || '[]');
-    let sleepTimer = null;
-    let sleepLeft = 0;
-
+    let sleepTimer = null, sleepLeft = 0;
     const audio = document.getElementById('audio');
-    const listEl = document.getElementById('list');
-    const countEl = document.getElementById('count');
-    const moreBtn = document.getElementById('more');
-    const playerBar = document.getElementById('playerBar');
-    const npTitle = document.getElementById('npTitle');
-    const npSub = document.getElementById('npSub');
-    const npToggle = document.getElementById('npToggle');
-    const npHeart = document.getElementById('npHeart');
-    const liveDot = document.getElementById('liveDot');
-    const vol = document.getElementById('vol');
-    const muteBtn = document.getElementById('muteBtn');
-    const timerBtn = document.getElementById('timerBtn');
-    const qInput = document.getElementById('q');
-    const vizCanvas = document.getElementById('viz');
-    const vizCtx = vizCanvas.getContext('2d');
     let audioCtx, analyser, srcNode;
 
-    async function api(path) {
-      for (const base of API) {
+    async function radioApi(path) {
+      for (const b of API_RADIO) {
         try {
-          const r = await fetch(base + path, { headers: { 'User-Agent': 'AIRadio/3.0', Accept: 'application/json' } });
+          const r = await fetch(b + path, { headers: { 'User-Agent': 'AlienRadio/1.0', Accept: 'application/json' } });
           if (r.ok) return await r.json();
         } catch (_) {}
       }
       throw new Error('offline');
     }
 
-    function toast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2200);
-    }
-
     function isFav(uuid) { return favs.some(f => f.stationuuid === uuid); }
-
     function toggleFav(st) {
       if (!st) return;
       const i = favs.findIndex(f => f.stationuuid === st.stationuuid);
-      if (i >= 0) {
-        favs.splice(i, 1);
-        toast('Removed from favorites');
-      } else {
-        favs.unshift({
-          stationuuid: st.stationuuid,
-          name: st.name,
-          url: st.url_resolved || st.url,
-          favicon: st.favicon,
-          country: st.country,
-          bitrate: st.bitrate,
-          tags: st.tags,
-          codec: st.codec
-        });
+      if (i >= 0) { favs.splice(i, 1); toast('Removed from favorites'); }
+      else {
+        favs.unshift({ stationuuid: st.stationuuid, name: st.name, url: st.url_resolved || st.url, favicon: st.favicon, country: st.country, bitrate: st.bitrate, tags: st.tags, codec: st.codec });
         if (favs.length > 100) favs.pop();
         toast('Added to favorites ♥');
       }
       localStorage.setItem(LS_FAVS, JSON.stringify(favs));
       updateHearts();
-      if (view === 'favs') renderList(favs);
+      if (view === 'favs') renderRadio(favs);
     }
-
     function addRecent(st) {
       if (!st) return;
       recent = recent.filter(r => r.stationuuid !== st.stationuuid);
-      recent.unshift({
-        stationuuid: st.stationuuid,
-        name: st.name,
-        url: st.url_resolved || st.url,
-        favicon: st.favicon,
-        country: st.country,
-        bitrate: st.bitrate,
-        tags: st.tags,
-        codec: st.codec
-      });
+      recent.unshift({ stationuuid: st.stationuuid, name: st.name, url: st.url_resolved || st.url, favicon: st.favicon, country: st.country, bitrate: st.bitrate, tags: st.tags, codec: st.codec });
       if (recent.length > 40) recent.pop();
       localStorage.setItem(LS_RECENT, JSON.stringify(recent));
     }
-
     function updateHearts() {
-      document.querySelectorAll('.station').forEach((el, i) => {
-        const st = stations[i];
-        if (!st) return;
+      document.querySelectorAll('#radioList .item').forEach((el, i) => {
+        const st = stations[i]; if (!st) return;
         const h = el.querySelector('.heart');
-        if (h) {
-          const on = isFav(st.stationuuid);
-          h.classList.toggle('on', on);
-          h.textContent = on ? '♥' : '♡';
-        }
+        if (h) { const on = isFav(st.stationuuid); h.classList.toggle('on', on); h.textContent = on ? '♥' : '♡'; }
       });
       if (current) {
         const on = isFav(current.stationuuid);
-        npHeart.classList.toggle('on', on);
-        npHeart.textContent = on ? '♥' : '♡';
+        document.getElementById('npHeart').classList.toggle('on', on);
+        document.getElementById('npHeart').textContent = on ? '♥' : '♡';
       }
     }
 
-    function esc(s) {
-      const d = document.createElement('div');
-      d.textContent = s || '';
-      return d.innerHTML;
-    }
-
-    function renderList(arr, append = false) {
-      if (!append) stations = arr;
-      else stations = stations.concat(arr);
-
+    function renderRadio(arr, append = false) {
+      if (!append) stations = arr; else stations = stations.concat(arr);
+      const list = document.getElementById('radioList');
       if (!stations.length) {
-        const msg = view === 'favs'
-          ? '<div class="empty"><div class="big">♡</div>No favorites yet.<br>Tap the heart on any station.</div>'
-          : view === 'recent'
-          ? '<div class="empty"><div class="big">🕑</div>Nothing played yet.<br>Start listening!</div>'
-          : '<div class="empty"><div class="big">👽</div>No stations in this sector.<br>Try another filter.</div>';
-        listEl.innerHTML = msg;
-        countEl.textContent = '0 stations';
-        moreBtn.classList.remove('show');
+        list.innerHTML = view === 'favs'
+          ? '<div class="empty"><div class="big">♡</div>No favorites yet</div>'
+          : view === 'recent' ? '<div class="empty"><div class="big">🕑</div>Nothing played yet</div>'
+          : '<div class="empty"><div class="big">👽</div>No stations found</div>';
+        document.getElementById('radioCount').textContent = '0 stations';
+        document.getElementById('radioMore').classList.remove('show');
         return;
       }
-
-      listEl.innerHTML = stations.map((s, i) => {
+      list.innerHTML = stations.map((s, i) => {
         const fav = s.favicon && String(s.favicon).startsWith('http')
-          ? `<img class="fav-icon" src="${s.favicon}" loading="lazy" onerror="this.outerHTML='<div class=\\'fav-icon ph\\'>👽</div>'"/>`
-          : `<div class="fav-icon ph">👽</div>`;
+          ? `<img class="item-icon" src="${s.favicon}" loading="lazy" onerror="this.outerHTML='<div class=\\'item-icon ph\\'>👽</div>'"/>`
+          : `<div class="item-icon ph">👽</div>`;
         const tags = (s.tags || '').split(',').filter(Boolean).slice(0, 2).join(', ');
         const meta = [s.country, s.bitrate ? s.bitrate + ' kbps' : '', tags].filter(Boolean).join(' · ');
         const on = current && current.stationuuid === s.stationuuid;
         const heartOn = isFav(s.stationuuid);
-        return `<div class="station ${on ? 'playing' : ''}" data-i="${i}">
-          ${fav}
-          <div class="st-info">
-            <div class="st-name">${esc(s.name)}</div>
-            <div class="st-meta">${esc(meta)}</div>
-          </div>
-          <div class="st-actions">
-            <button class="heart ${heartOn ? 'on' : ''}" data-fav="${i}">${heartOn ? '♥' : '♡'}</button>
-            <span class="play-ico">${on && playing ? '⏸' : '▶'}</span>
-          </div>
-        </div>`;
+        return `<div class="item ${on ? 'playing' : ''}" data-i="${i}">
+          ${fav}<div class="item-info"><div class="item-name">${esc(s.name)}</div><div class="item-meta">${esc(meta)}</div></div>
+          <div class="item-actions"><button class="heart ${heartOn?'on':''}" data-fav="${i}">${heartOn?'♥':'♡'}</button>
+          <span class="play-ico">${on && playing ? '⏸' : '▶'}</span></div></div>`;
       }).join('');
-
-      countEl.textContent = `${stations.length} station${stations.length !== 1 ? 's' : ''}`;
-      moreBtn.classList.toggle('show', view === 'browse' && arr.length >= LIMIT);
+      document.getElementById('radioCount').textContent = stations.length + ' stations';
+      document.getElementById('radioMore').classList.toggle('show', view === 'browse' && arr.length >= LIMIT);
     }
 
-    function path(q, off) {
+    function radioPath(q, off) {
       if (q.t === 'top') return `/json/stations/topvote/${LIMIT}?offset=${off}&hidebroken=true`;
       if (q.t === 'clicks') return `/json/stations/topclick/${LIMIT}?offset=${off}&hidebroken=true`;
       if (q.t === 'search') return `/json/stations/search?name=${encodeURIComponent(q.v)}&limit=${LIMIT}&offset=${off}&hidebroken=true&order=votes&reverse=true`;
@@ -646,270 +572,403 @@
       return `/json/stations/topvote/${LIMIT}?offset=${off}&hidebroken=true`;
     }
 
-    async function load(q, append = false) {
+    async function loadRadio(q, append = false) {
       if (view !== 'browse') return;
       if (!append) {
-        listEl.innerHTML = '<div class="loading">Scanning the airwaves…</div>';
-        offset = 0;
-        query = q;
+        document.getElementById('radioList').innerHTML = '<div class="loading">Scanning airwaves…</div>';
+        offset = 0; query = q;
       }
       try {
-        const data = await api(path(q, offset));
-        const valid = data.filter(s => s.url_resolved || s.url);
-        renderList(valid, append);
+        const data = await radioApi(radioPath(q, offset));
+        renderRadio(data.filter(s => s.url_resolved || s.url), append);
         offset += LIMIT;
       } catch {
-        if (!append) {
-          listEl.innerHTML = '<div class="err">Transmission failed. Check your connection.</div>';
-          countEl.textContent = 'Error';
-        }
+        if (!append) document.getElementById('radioList').innerHTML = '<div class="err">Could not load stations</div>';
       }
     }
 
-    function initAudioGraph() {
+    function initAudio() {
       if (audioCtx) return;
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 128;
-      analyser.smoothingTimeConstant = 0.75;
+      analyser = audioCtx.createAnalyser(); analyser.fftSize = 128; analyser.smoothingTimeConstant = 0.75;
       srcNode = audioCtx.createMediaElementSource(audio);
-      srcNode.connect(analyser);
-      analyser.connect(audioCtx.destination);
+      srcNode.connect(analyser); analyser.connect(audioCtx.destination);
     }
-
     function drawViz() {
       requestAnimationFrame(drawViz);
-      if (!analyser || !playing) {
-        const w = vizCanvas.width / (devicePixelRatio || 1);
-        const h = vizCanvas.height / (devicePixelRatio || 1);
-        vizCtx.fillStyle = '#070a10';
-        vizCtx.fillRect(0, 0, w, h);
-        return;
-      }
+      const c = document.getElementById('viz');
+      const ctx = c.getContext('2d');
+      const dpr = devicePixelRatio || 1;
+      const w = c.width / dpr, h = c.height / dpr;
+      if (!analyser || !playing) { ctx.fillStyle = '#070a10'; ctx.fillRect(0,0,w,h); return; }
       const buf = new Uint8Array(analyser.frequencyBinCount);
       analyser.getByteFrequencyData(buf);
-      const w = vizCanvas.width / (devicePixelRatio || 1);
-      const h = vizCanvas.height / (devicePixelRatio || 1);
-      vizCtx.fillStyle = 'rgba(7,10,16,0.35)';
-      vizCtx.fillRect(0, 0, w, h);
-      const n = Math.floor(buf.length * 0.7);
-      const bw = w / n;
+      ctx.fillStyle = 'rgba(7,10,16,0.35)'; ctx.fillRect(0,0,w,h);
+      const n = Math.floor(buf.length * 0.7), bw = w / n;
       for (let i = 0; i < n; i++) {
-        const bh = (buf[i] / 255) * h * 0.92;
-        const hue = 90 + (buf[i] / 255) * 50;
-        vizCtx.fillStyle = `hsla(${hue}, 95%, 55%, 0.9)`;
-        vizCtx.fillRect(i * bw, h - bh, bw - 1.5, bh);
+        const bh = (buf[i]/255)*h*0.9;
+        ctx.fillStyle = `hsla(${90 + buf[i]/5},95%,55%,0.9)`;
+        ctx.fillRect(i*bw, h-bh, bw-1.2, bh);
       }
     }
-
     function resizeViz() {
-      const r = vizCanvas.parentElement.getBoundingClientRect();
+      const c = document.getElementById('viz');
+      const r = c.parentElement.getBoundingClientRect();
       const dpr = devicePixelRatio || 1;
-      vizCanvas.width = r.width * dpr;
-      vizCanvas.height = r.height * dpr;
-      vizCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      c.width = r.width * dpr; c.height = r.height * dpr;
+      c.getContext('2d').setTransform(dpr,0,0,dpr,0,0);
     }
 
-    function play(st) {
+    function playStation(st) {
       if (!st) return;
-      const url = st.url_resolved || st.url;
-      if (!url) return;
-      current = st;
-      addRecent(st);
-      audio.src = url;
-      audio.volume = muted ? 0 : vol.value / 100;
-      initAudioGraph();
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      audio.play().then(() => {
-        playing = true;
-        updatePlayer();
-      }).catch(() => {
-        playing = false;
-        npTitle.textContent = st.name;
-        npSub.textContent = 'Stream offline or blocked — try another';
-        playerBar.classList.add('show');
-        updatePlayer();
+      stopBook(); // stop TTS if reading
+      const url = st.url_resolved || st.url; if (!url) return;
+      current = st; addRecent(st);
+      audio.src = url; audio.volume = muted ? 0 : document.getElementById('vol').value / 100;
+      initAudio(); if (audioCtx.state === 'suspended') audioCtx.resume();
+      audio.play().then(() => { playing = true; updatePlayer(); }).catch(() => {
+        playing = false; document.getElementById('npTitle').textContent = st.name;
+        document.getElementById('npSub').textContent = 'Stream offline — try another';
+        document.getElementById('playerBar').classList.add('show'); updatePlayer();
       });
     }
-
     function updatePlayer() {
       if (!current) return;
-      playerBar.classList.add('show');
-      liveDot.classList.toggle('on', playing);
-      npTitle.textContent = current.name || 'Unknown';
-      npSub.textContent = [current.country, current.bitrate ? current.bitrate + ' kbps' : '', current.codec]
-        .filter(Boolean).join(' · ') || 'Internet stream';
-      npToggle.textContent = playing ? '⏸' : '▶';
+      document.getElementById('playerBar').classList.add('show');
+      document.getElementById('liveDot').classList.toggle('on', playing);
+      document.getElementById('npTitle').textContent = current.name || 'Unknown';
+      document.getElementById('npSub').textContent = [current.country, current.bitrate ? current.bitrate+' kbps':''].filter(Boolean).join(' · ') || 'Stream';
+      document.getElementById('npToggle').textContent = playing ? '⏸' : '▶';
       const on = isFav(current.stationuuid);
-      npHeart.classList.toggle('on', on);
-      npHeart.textContent = on ? '♥' : '♡';
-      document.querySelectorAll('.station').forEach((el, i) => {
-        const s = stations[i];
-        const match = s && current && s.stationuuid === current.stationuuid;
-        el.classList.toggle('playing', match);
-        const ico = el.querySelector('.play-ico');
-        if (ico) ico.textContent = match && playing ? '⏸' : '▶';
+      document.getElementById('npHeart').classList.toggle('on', on);
+      document.getElementById('npHeart').textContent = on ? '♥' : '♡';
+      document.querySelectorAll('#radioList .item').forEach((el, i) => {
+        const s = stations[i]; const m = s && current && s.stationuuid === current.stationuuid;
+        el.classList.toggle('playing', m);
+        const ico = el.querySelector('.play-ico'); if (ico) ico.textContent = m && playing ? '⏸' : '▶';
       });
       resizeViz();
     }
-
-    function toggle() {
+    function togglePlay() {
       if (!current) return;
-      if (playing) { audio.pause(); playing = false; }
-      else { audio.play().then(() => { playing = true; }).catch(() => {}); }
+      if (playing) { audio.pause(); playing = false; } else { audio.play().then(() => playing = true).catch(()=>{}); }
       updatePlayer();
     }
-
-    function stop() {
-      audio.pause();
-      audio.removeAttribute('src');
-      playing = false;
-      current = null;
-      playerBar.classList.remove('show');
-      liveDot.classList.remove('on');
-      document.querySelectorAll('.station').forEach(el => {
-        el.classList.remove('playing');
-        const ico = el.querySelector('.play-ico');
-        if (ico) ico.textContent = '▶';
+    function stopRadio() {
+      audio.pause(); audio.removeAttribute('src'); playing = false; current = null;
+      document.getElementById('playerBar').classList.remove('show');
+      document.getElementById('liveDot').classList.remove('on');
+      document.querySelectorAll('#radioList .item').forEach(el => {
+        el.classList.remove('playing'); const ico = el.querySelector('.play-ico'); if (ico) ico.textContent = '▶';
       });
       clearSleep();
     }
-
-    function setView(v) {
+    function setRadioView(v) {
       view = v;
-      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === v));
-      document.getElementById('filters').style.display = v === 'browse' ? 'flex' : 'none';
-      moreBtn.classList.remove('show');
-      if (v === 'browse') load(query);
-      else if (v === 'favs') renderList(favs);
-      else renderList(recent);
+      document.querySelectorAll('#panel-radio .sub-tab').forEach(t => t.classList.toggle('active', t.dataset.view === v));
+      document.getElementById('radioFilters').style.display = v === 'browse' ? 'flex' : 'none';
+      document.getElementById('radioMore').classList.remove('show');
+      if (v === 'browse') loadRadio(query);
+      else if (v === 'favs') renderRadio(favs);
+      else renderRadio(recent);
     }
-
-    // Sleep timer
     function clearSleep() {
-      if (sleepTimer) clearInterval(sleepTimer);
-      sleepTimer = null;
-      sleepLeft = 0;
-      timerBtn.textContent = '⏱ Sleep';
-      timerBtn.classList.remove('active');
+      if (sleepTimer) clearInterval(sleepTimer); sleepTimer = null; sleepLeft = 0;
+      document.getElementById('timerBtn').textContent = '⏱ Sleep';
+      document.getElementById('timerBtn').classList.remove('active');
     }
     function startSleep(mins) {
-      clearSleep();
-      sleepLeft = mins * 60;
-      timerBtn.classList.add('active');
-      timerBtn.textContent = `⏱ ${mins}m`;
+      clearSleep(); sleepLeft = mins * 60;
+      const btn = document.getElementById('timerBtn');
+      btn.classList.add('active'); btn.textContent = `⏱ ${mins}m`;
       sleepTimer = setInterval(() => {
         sleepLeft--;
-        if (sleepLeft <= 0) {
-          stop();
-          toast('Sleep timer ended');
-          clearSleep();
-          return;
-        }
-        const m = Math.ceil(sleepLeft / 60);
-        timerBtn.textContent = `⏱ ${m}m`;
+        if (sleepLeft <= 0) { stopRadio(); toast('Sleep timer ended'); clearSleep(); return; }
+        btn.textContent = `⏱ ${Math.ceil(sleepLeft/60)}m`;
       }, 1000);
-      toast(`Sleep timer: ${mins} minutes`);
+      toast(`Sleep: ${mins} min`);
     }
 
-    // Events
-    document.getElementById('searchBtn').onclick = () => {
-      const v = qInput.value.trim();
-      if (v) { setView('browse'); load({ t: 'search', v }); document.querySelectorAll('.chip').forEach(c => c.classList.remove('active')); }
-      else load({ t: 'top' });
+    // Radio events
+    document.getElementById('radioSearch').onclick = () => {
+      const v = document.getElementById('radioQ').value.trim();
+      setRadioView('browse');
+      if (v) { loadRadio({ t: 'search', v }); document.querySelectorAll('#radioFilters .chip').forEach(c => c.classList.remove('active')); }
+      else loadRadio({ t: 'top' });
     };
-    qInput.onkeydown = e => { if (e.key === 'Enter') document.getElementById('searchBtn').click(); };
-
-    document.querySelectorAll('.tab').forEach(t => t.onclick = () => setView(t.dataset.view));
-
-    document.getElementById('filters').onclick = e => {
-      const c = e.target.closest('.chip');
-      if (!c) return;
-      document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
-      c.classList.add('active');
-      qInput.value = '';
+    document.getElementById('radioQ').onkeydown = e => { if (e.key === 'Enter') document.getElementById('radioSearch').click(); };
+    document.querySelectorAll('#panel-radio .sub-tab').forEach(t => t.onclick = () => setRadioView(t.dataset.view));
+    document.getElementById('radioFilters').onclick = e => {
+      const c = e.target.closest('.chip'); if (!c) return;
+      document.querySelectorAll('#radioFilters .chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active'); document.getElementById('radioQ').value = '';
       const t = c.dataset.t, v = c.dataset.v;
-      load(t === 'top' || t === 'clicks' ? { t } : { t, v });
+      loadRadio(t === 'top' || t === 'clicks' ? { t } : { t, v });
     };
-
-    listEl.onclick = e => {
+    document.getElementById('radioList').onclick = e => {
       const heart = e.target.closest('.heart');
-      if (heart) {
-        e.stopPropagation();
-        const i = +heart.dataset.fav;
-        toggleFav(stations[i]);
+      if (heart) { e.stopPropagation(); toggleFav(stations[+heart.dataset.fav]); return; }
+      const row = e.target.closest('.item'); if (!row) return;
+      const s = stations[+row.dataset.i];
+      if (current && current.stationuuid === s.stationuuid) togglePlay(); else playStation(s);
+    };
+    document.getElementById('radioMore').onclick = () => loadRadio(query, true);
+    document.getElementById('npToggle').onclick = togglePlay;
+    document.getElementById('npStop').onclick = stopRadio;
+    document.getElementById('npHeart').onclick = () => toggleFav(current);
+    document.getElementById('vol').oninput = () => { if (!muted) audio.volume = document.getElementById('vol').value / 100; };
+    document.getElementById('muteBtn').onclick = () => {
+      muted = !muted; audio.volume = muted ? 0 : document.getElementById('vol').value / 100;
+      document.getElementById('muteBtn').textContent = muted ? '🔇' : '🔊';
+    };
+    document.getElementById('timerBtn').onclick = () => {
+      if (sleepTimer) { clearSleep(); toast('Timer cancelled'); return; }
+      const opts = [15,30,45,60]; const btn = document.getElementById('timerBtn');
+      const cur = parseInt(btn.dataset.next || '0', 10);
+      startSleep(opts[cur % 4]); btn.dataset.next = (cur + 1) % 4;
+    };
+    document.getElementById('surprise').onclick = async () => {
+      setRadioView('browse');
+      document.getElementById('radioList').innerHTML = '<div class="loading">Finding signal…</div>';
+      try {
+        const data = await radioApi('/json/stations/topvote/80?hidebroken=true');
+        const valid = data.filter(s => s.url_resolved || s.url);
+        if (valid.length) { renderRadio(valid.slice(0, 48)); playStation(valid[Math.floor(Math.random()*valid.length)]); toast('🎲 Surprised!'); }
+      } catch { document.getElementById('radioList').innerHTML = '<div class="err">Failed</div>'; }
+    };
+    audio.addEventListener('ended', () => { playing = false; updatePlayer(); });
+    audio.addEventListener('error', () => { if (current) { document.getElementById('npSub').textContent = 'Stream error'; playing = false; updatePlayer(); } });
+
+    // ========== BOOKS ==========
+    let books = [], bookPage = 1, bookQuery = 'popular', currentBook = null;
+    let bookText = '', utterances = [], utterIndex = 0, speaking = false, paused = false;
+    const synth = window.speechSynthesis;
+
+    async function loadBooks(q, page = 1, append = false) {
+      if (!append) {
+        document.getElementById('bookList').innerHTML = '<div class="loading">Loading free books…</div>';
+        bookPage = 1; bookQuery = q;
+      }
+      try {
+        let url = 'https://gutendex.com/books/?';
+        if (q === 'popular') url += 'languages=en';
+        else if (q.startsWith('search:')) url += 'search=' + encodeURIComponent(q.slice(7)) + '&languages=en';
+        else url += 'topic=' + encodeURIComponent(q) + '&languages=en';
+        url += '&page=' + page;
+        const res = await fetch(url);
+        const data = await res.json();
+        const results = data.results || [];
+        if (!append) books = results; else books = books.concat(results);
+        renderBooks(results, append);
+        bookPage = page;
+        document.getElementById('bookMore').classList.toggle('show', !!data.next);
+        document.getElementById('bookCount').textContent = (data.count || books.length) + ' free books';
+      } catch {
+        if (!append) document.getElementById('bookList').innerHTML = '<div class="err">Could not load books</div>';
+      }
+    }
+
+    function renderBooks(arr, append) {
+      const list = document.getElementById('bookList');
+      if (!books.length) {
+        list.innerHTML = '<div class="empty"><div class="big">📚</div>No books found</div>';
         return;
       }
-      const row = e.target.closest('.station');
-      if (!row) return;
-      const i = +row.dataset.i;
-      const s = stations[i];
-      if (current && current.stationuuid === s.stationuuid) toggle();
-      else play(s);
-    };
+      const html = books.map((b, i) => {
+        const author = (b.authors && b.authors[0]) ? b.authors[0].name : 'Unknown';
+        const cover = b.formats && (b.formats['image/jpeg'] || b.formats['image/png']);
+        const icon = cover
+          ? `<img class="item-icon" src="${cover}" loading="lazy" onerror="this.outerHTML='<div class=\\'item-icon ph\\'>📖</div>'"/>`
+          : `<div class="item-icon ph">📖</div>`;
+        return `<div class="item" data-bi="${i}">
+          ${icon}
+          <div class="item-info">
+            <div class="item-name">${esc(b.title)}</div>
+            <div class="item-meta">${esc(author)} · ${b.download_count ? b.download_count.toLocaleString() + ' downloads' : ''}</div>
+          </div>
+          <span class="play-ico">▶</span>
+        </div>`;
+      }).join('');
+      list.innerHTML = html;
+    }
 
-    moreBtn.onclick = () => load(query, true);
-    npToggle.onclick = toggle;
-    document.getElementById('npStop').onclick = stop;
-    npHeart.onclick = () => toggleFav(current);
+    function openBook(b) {
+      currentBook = b;
+      document.getElementById('booksBrowse').style.display = 'none';
+      document.getElementById('bookReader').classList.add('show');
+      document.getElementById('bookTitle').textContent = b.title;
+      document.getElementById('bookAuthor').textContent = (b.authors && b.authors[0]) ? b.authors[0].name : 'Unknown author';
+      document.getElementById('bookSummary').textContent = (b.summaries && b.summaries[0]) || (b.subjects || []).slice(0, 4).join(' · ') || 'Public domain book from Project Gutenberg';
+      document.getElementById('textPreview').textContent = 'Loading book text…';
+      document.getElementById('textProgress').textContent = 'Fetching text…';
+      document.getElementById('readStart').disabled = true;
+      stopBook();
+      fetchBookText(b);
+    }
 
-    vol.oninput = () => {
-      if (!muted) audio.volume = vol.value / 100;
-    };
-    muteBtn.onclick = () => {
-      muted = !muted;
-      audio.volume = muted ? 0 : vol.value / 100;
-      muteBtn.textContent = muted ? '🔇' : '🔊';
-    };
-
-    timerBtn.onclick = () => {
-      if (sleepTimer) { clearSleep(); toast('Sleep timer cancelled'); return; }
-      // cycle 15 → 30 → 45 → 60
-      const opts = [15, 30, 45, 60];
-      const cur = parseInt(timerBtn.dataset.next || '0', 10);
-      const mins = opts[cur % opts.length];
-      timerBtn.dataset.next = (cur + 1) % opts.length;
-      startSleep(mins);
-    };
-
-    document.getElementById('surprise').onclick = async () => {
-      setView('browse');
-      listEl.innerHTML = '<div class="loading">Finding a random signal…</div>';
-      try {
-        // random from top 500
-        const data = await api('/json/stations/topvote/100?hidebroken=true');
-        const valid = data.filter(s => s.url_resolved || s.url);
-        if (valid.length) {
-          const pick = valid[Math.floor(Math.random() * valid.length)];
-          renderList(valid.slice(0, 48));
-          play(pick);
-          toast('🎲 Surprised!');
+    async function fetchBookText(b) {
+      const formats = b.formats || {};
+      // Prefer plain text utf-8
+      let textUrl = formats['text/plain; charset=utf-8'] || formats['text/plain; charset=us-ascii'] || formats['text/plain'];
+      if (!textUrl) {
+        // try any text/plain key
+        for (const k of Object.keys(formats)) {
+          if (k.includes('text/plain')) { textUrl = formats[k]; break; }
         }
-      } catch {
-        listEl.innerHTML = '<div class="err">Could not fetch stations.</div>';
       }
-    };
+      if (!textUrl) {
+        document.getElementById('textPreview').textContent = 'No plain-text version available for this book. Try another title.';
+        document.getElementById('textProgress').textContent = 'Unavailable';
+        return;
+      }
+      try {
+        // Gutenberg often redirects; fetch may need cors proxy for some, but many allow CORS
+        let res = await fetch(textUrl);
+        if (!res.ok) {
+          // fallback via allorigins or similar is unreliable; show link message
+          throw new Error('fetch failed');
+        }
+        let text = await res.text();
+        // Strip Gutenberg header/footer roughly
+        const startMarkers = ['*** START OF', '***START OF'];
+        const endMarkers = ['*** END OF', '***END OF'];
+        for (const m of startMarkers) {
+          const i = text.indexOf(m);
+          if (i >= 0) { text = text.slice(text.indexOf('\n', i) + 1); break; }
+        }
+        for (const m of endMarkers) {
+          const i = text.indexOf(m);
+          if (i >= 0) { text = text.slice(0, i); break; }
+        }
+        text = text.replace(/\r\n/g, '\n').trim();
+        // Limit very long books for browser TTS practicality (first ~80k chars ~ book portion)
+        if (text.length > 100000) {
+          text = text.slice(0, 100000) + '\n\n[… text truncated for browser reading. Full book available on gutenberg.org …]';
+        }
+        bookText = text;
+        document.getElementById('textPreview').textContent = text.slice(0, 3000) + (text.length > 3000 ? '\n\n…' : '');
+        document.getElementById('textProgress').textContent = `Ready · ${Math.round(text.length/1000)}k characters`;
+        document.getElementById('readStart').disabled = false;
+      } catch (e) {
+        document.getElementById('textPreview').textContent = 'Could not load full text in-browser (CORS). You can still open the book on Project Gutenberg.\n\nOpening summary mode instead…';
+        const summary = (b.summaries && b.summaries[0]) || b.title + ' by ' + ((b.authors&&b.authors[0])?b.authors[0].name:'Unknown');
+        bookText = summary + '\n\nThis is a public domain work from Project Gutenberg. Full text could not be loaded automatically. Search for "' + b.title + '" on gutenberg.org to download.';
+        document.getElementById('textPreview').textContent = bookText;
+        document.getElementById('textProgress').textContent = 'Summary mode';
+        document.getElementById('readStart').disabled = false;
+      }
+    }
 
-    // Keyboard
-    document.addEventListener('keydown', e => {
-      if (e.target.matches('input')) return;
-      if (e.code === 'Space') { e.preventDefault(); toggle(); }
-      if (e.key === 'm' || e.key === 'M') muteBtn.click();
+    function populateVoices() {
+      const sel = document.getElementById('voiceSelect');
+      const voices = synth.getVoices().filter(v => v.lang.startsWith('en') || v.lang.startsWith('en-'));
+      const list = voices.length ? voices : synth.getVoices();
+      sel.innerHTML = list.map((v, i) => `<option value="${i}">${v.name} (${v.lang})</option>`).join('');
+      // store full list on select
+      sel._voices = list;
+    }
+    if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = populateVoices;
+    populateVoices();
+
+    function stopBook() {
+      synth.cancel(); speaking = false; paused = false; utterIndex = 0;
+      document.getElementById('readStart').disabled = !bookText;
+      document.getElementById('readPause').disabled = true;
+      document.getElementById('readPause').textContent = '⏸ Pause';
+      document.getElementById('readStop').disabled = true;
+    }
+
+    function speakBook() {
+      if (!bookText) return;
+      stopRadio(); // pause radio
+      stopBook();
+      // Split into sentences for better control
+      const chunks = bookText.match(/[^.!?]+[.!?]+[\s]*/g) || [bookText];
+      utterances = chunks.filter(c => c.trim().length > 2);
+      utterIndex = 0;
+      speaking = true; paused = false;
+      document.getElementById('readStart').disabled = true;
+      document.getElementById('readPause').disabled = false;
+      document.getElementById('readStop').disabled = false;
+      speakNext();
+    }
+
+    function speakNext() {
+      if (!speaking || utterIndex >= utterances.length) {
+        speaking = false;
+        document.getElementById('readStart').disabled = false;
+        document.getElementById('readPause').disabled = true;
+        document.getElementById('readStop').disabled = true;
+        document.getElementById('textProgress').textContent = 'Finished reading';
+        return;
+      }
+      const u = new SpeechSynthesisUtterance(utterances[utterIndex]);
+      const sel = document.getElementById('voiceSelect');
+      const voices = sel._voices || synth.getVoices();
+      const vi = parseInt(sel.value, 10);
+      if (voices[vi]) u.voice = voices[vi];
+      u.rate = parseFloat(document.getElementById('rateSelect').value) || 1;
+      u.onend = () => { utterIndex++; if (speaking && !paused) speakNext(); };
+      u.onerror = () => { utterIndex++; if (speaking) speakNext(); };
+      document.getElementById('textProgress').textContent = `Reading ${utterIndex + 1} / ${utterances.length}`;
+      // highlight-ish in preview (show current chunk area)
+      const preview = document.getElementById('textPreview');
+      const start = Math.max(0, utterIndex - 1);
+      const snippet = utterances.slice(start, start + 5).join('');
+      preview.textContent = snippet + (utterIndex + 5 < utterances.length ? '\n\n…' : '');
+      synth.speak(u);
+    }
+
+    document.getElementById('readStart').onclick = speakBook;
+    document.getElementById('readPause').onclick = () => {
+      if (!speaking) return;
+      if (paused) { synth.resume(); paused = false; document.getElementById('readPause').textContent = '⏸ Pause'; }
+      else { synth.pause(); paused = true; document.getElementById('readPause').textContent = '▶ Resume'; }
+    };
+    document.getElementById('readStop').onclick = stopBook;
+    document.getElementById('bookBack').onclick = () => {
+      stopBook();
+      document.getElementById('bookReader').classList.remove('show');
+      document.getElementById('booksBrowse').style.display = 'block';
+    };
+    document.getElementById('bookSearch').onclick = () => {
+      const v = document.getElementById('bookQ').value.trim();
+      document.querySelectorAll('#bookFilters .chip').forEach(c => c.classList.remove('active'));
+      if (v) loadBooks('search:' + v);
+      else loadBooks('popular');
+    };
+    document.getElementById('bookQ').onkeydown = e => { if (e.key === 'Enter') document.getElementById('bookSearch').click(); };
+    document.getElementById('bookFilters').onclick = e => {
+      const c = e.target.closest('.chip'); if (!c) return;
+      document.querySelectorAll('#bookFilters .chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active'); document.getElementById('bookQ').value = '';
+      loadBooks(c.dataset.b);
+    };
+    document.getElementById('bookList').onclick = e => {
+      const row = e.target.closest('.item'); if (!row) return;
+      openBook(books[+row.dataset.bi]);
+    };
+    document.getElementById('bookMore').onclick = () => loadBooks(bookQuery, bookPage + 1, true);
+
+    // Main tabs
+    document.querySelectorAll('.main-tab').forEach(tab => {
+      tab.onclick = () => {
+        document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+        if (tab.dataset.panel === 'books' && !books.length) loadBooks('popular');
+      };
     });
 
-    audio.addEventListener('ended', () => { playing = false; updatePlayer(); });
-    audio.addEventListener('error', () => {
-      if (current) {
-        npSub.textContent = 'Stream error — try another station';
-        playing = false;
-        updatePlayer();
-      }
+    document.addEventListener('keydown', e => {
+      if (e.target.matches('input, select')) return;
+      if (e.code === 'Space') { e.preventDefault(); if (document.getElementById('panel-radio').classList.contains('active')) togglePlay(); }
     });
 
     window.addEventListener('resize', resizeViz);
-    resizeViz();
-    drawViz();
-    load({ t: 'top' });
+    resizeViz(); drawViz();
+    loadRadio({ t: 'top' });
   </script>
 </body>
 </html>
